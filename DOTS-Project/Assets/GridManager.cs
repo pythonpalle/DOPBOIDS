@@ -15,6 +15,17 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        InvokeRepeating("SetupGrid", 1f, 1f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach (var vector in grid.Keys)
+        {
+            Vector3 center = new Vector3(vector.x, vector.y, 0);
+            Gizmos.DrawCube(center, Vector3.one * gridSize);
+        }
     }
 
     public void SetupGrid()

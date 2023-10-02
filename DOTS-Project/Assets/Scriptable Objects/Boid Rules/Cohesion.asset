@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d3ade41de3976438a786a0645401ef, type: 3}
   m_Name: Cohesion
   m_EditorClassIdentifier: 
-  weight: 7.33
+  weight: 1
   neighbourRadius: 2
   maxRotationSpeed: 10
   rotationDamping: 3
