@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class BoidManager : MonoBehaviour
 {
-    [SerializeField] private List<BoidRule> boidRules = new List<BoidRule>();
+    [Header("Boid Set")]
     [SerializeField] private BoidEntitySet _boidEntitySet;
+    
+    [Header("Boid Rules")]
+    [SerializeField] private List<BoidRule> boidRules = new List<BoidRule>();
 
     private void Update()
     {

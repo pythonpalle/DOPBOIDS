@@ -23,14 +23,12 @@ public class ScreenManager : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    private void Start()
-    {
+        
         _camera = Camera.main;
+        UpdateData();
     }
 
-    private void Update()
+    private void UpdateData()
     {
         BottomLeft = _camera.ViewportToWorldPoint(new Vector3(0, 0, _camera.nearClipPlane));
         TopRight = _camera.ViewportToWorldPoint(new Vector3(1, 1, _camera.nearClipPlane));
@@ -39,5 +37,8 @@ public class ScreenManager : MonoBehaviour
 
         Width = diagonal.x;
         Height = diagonal.y;
+        
+        Debug.Log("BL: " + BottomLeft);
+        Debug.Log("Height: " + Height);
     }
 }

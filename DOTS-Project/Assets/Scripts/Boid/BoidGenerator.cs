@@ -31,7 +31,7 @@ public class BoidGenerator : MonoBehaviour
         {
             x = 0, //ScreenManager.Instance.BottomLeft.x - 1,
             y = ScreenManager.Instance.BottomLeft.y + Random.Range(0, ScreenManager.Instance.Height),
-            z = 0,
+            z = 0
         };
     }
     
