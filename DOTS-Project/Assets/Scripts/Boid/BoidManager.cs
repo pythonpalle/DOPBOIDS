@@ -13,11 +13,14 @@ public class BoidManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        foreach (var rule in ruleContainer.Rules)
+        foreach (var ruleConfiguration in ruleContainer.RuleConfigurations)
         {
+            if (!ruleConfiguration.active)
+                continue;
+            
             foreach (var boid in _boidEntitySet.Boids)
             {
-                rule.UpdateBoid(boid);
+                ruleConfiguration.rule.UpdateBoid(boid);
             }
         }
     }

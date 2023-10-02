@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Wander
   m_EditorClassIdentifier: 
   pushForce: 0.2
+  maxTurnAngle: 0.1
