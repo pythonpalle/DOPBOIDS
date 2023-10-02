@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5742515696524155311}
   - component: {fileID: 5742515696524155310}
-  - component: {fileID: 5742515696524155309}
   - component: {fileID: 40339294884998762}
   - component: {fileID: 2389013187060525166}
   - component: {fileID: 3320493969683580609}
@@ -88,27 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &5742515696524155309
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5742515696524155307}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &40339294884998762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,8 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7656798b3b43e6b2d893f54a107b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5742515696524155309}
-  _collider2D: {fileID: 2389013187060525166}
 --- !u!58 &2389013187060525166
 CircleCollider2D:
   m_ObjectHideFlags: 0

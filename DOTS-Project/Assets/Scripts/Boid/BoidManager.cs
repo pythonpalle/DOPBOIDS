@@ -18,23 +18,14 @@ public class BoidManager : MonoBehaviour
         Instance = this;
     }
 
-    public Dictionary<Collider2D, BoidEntity> colliderEntities { get; private set; } =
-        new Dictionary<Collider2D, BoidEntity>();
-
     public List<BoidEntity> Boids { get; private set; } = new List<BoidEntity>();
 
     public void BuildBoidDictionary()
     {
-        foreach (var boid in _boidEntitySet.Boids)
-        {
-            colliderEntities.Add(boid.Collider, boid);
-            Boids.Add(boid);
-        }
-        
-        Debug.Log("Entities: " + colliderEntities.Count); 
+        Boids = new List<BoidEntity>(_boidEntitySet.Boids);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         foreach (var ruleConfiguration in ruleContainer.RuleConfigurations)
         {

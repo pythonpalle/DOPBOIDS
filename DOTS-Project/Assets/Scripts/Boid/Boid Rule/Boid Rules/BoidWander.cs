@@ -5,16 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Rules/Wander")]
 public class BoidWander : BoidRule
 {
-    [SerializeField] private float pushForce = 1.5f;
+    [SerializeField] private float pushForce = 0.15f;
     [SerializeField] private float maxTurnAngle = 0.5f;
     
     public override void UpdateBoid(BoidEntity boid)
     {
-        var force = pushForce * boid.Heading;
-        boid.Rigidbody.AddForce(GetWeightedForce(force));
-        //boid.transform.position += boid.transform.right * Time.fixedDeltaTime;
+        boid.transform.position += (Vector3)boid.Heading * pushForce * Time.deltaTime;
 
         float turnAngle = Random.Range(-maxTurnAngle, maxTurnAngle);
-        boid.Rigidbody.AddTorque(GetWeightedTorque(turnAngle)); 
+        boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, turnAngle) * boid.Rotation, 
+            maxTurnAngle*Time.deltaTime);
     }
 }

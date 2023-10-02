@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 1
   pushForce: 0.5
-  maxTurnAngle: 0.05
+  maxTurnAngle: 0.1

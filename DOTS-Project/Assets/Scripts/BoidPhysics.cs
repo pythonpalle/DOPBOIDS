@@ -4,45 +4,8 @@ using UnityEngine;
 
 public static class BoidPhysics
 {
-    public static Vector2 GetAverageBoidVector(BoidEntity boid, bool comparePosition, float maxDistance = 2f, int maxCapacity = 10)
-    {
-        float maxSquareDistance = maxDistance * maxDistance;
-
-        var boidPos = boid.Position;
-
-        var averagePos = Vector2.zero;
-        int count = 0;
-
-        foreach (var otherBoid in BoidManager.Instance.Boids)
-        {
-            if (count > maxCapacity - 1)
-                break;
-
-            if (otherBoid == boid)
-                continue;
-            
-            if (SquareDistance(boidPos, otherBoid.Position) < maxSquareDistance)
-            {
-                if (comparePosition)
-                {
-                    averagePos += otherBoid.Position;
-                }
-                else
-                {
-                    averagePos += otherBoid.Heading;
-                }
-                
-                count++;
-            }
-        }
-
-        if (count == 0)
-            return Vector2.zero;
-        
-        return averagePos/count;
-    }
     
-    public static Vector2 GetAverageBoidVectorFromGrid(BoidEntity boid, bool comparePosition, float maxDistance = 2f)
+    public static Vector2 GetAverageBoidVectorFromGrid(BoidEntity boid, bool comparePosition)
     {
         var nearbyBoids = GridManager.Instance.GetNearbyBoids(boid.Position);
 

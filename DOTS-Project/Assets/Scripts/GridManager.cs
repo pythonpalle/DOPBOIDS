@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
     public float gridSize = 1.0f;
-    private Dictionary<Vector2Int, List<BoidEntity>> grid;
+    private Dictionary<Vector2Int, List<BoidEntity>> grid = new Dictionary<Vector2Int, List<BoidEntity>>();
 
     [SerializeField] private BoidEntitySet _entitySet;
     
@@ -21,6 +22,8 @@ public class GridManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (grid.Count == 0) return;
+        
         foreach (var vector in grid.Keys)
         {
             Vector3 center = new Vector3(vector.x, vector.y, 0);

@@ -16,50 +16,30 @@ public abstract class BoidRule : ScriptableObject
    {
       return inForce * weight;
    }
-
-   protected Vector2 GetAverageFromNearbyBoids(BoidEntity boid, float neighbourRadius, bool checkPosition)
+   
+   protected void UpdateBoidRotationFromAverageVector(BoidEntity boid, float maxRotSpeed, bool checkPosition)
    {
-      bool useMyPhysics = true;
-      
-      if (useMyPhysics)
+      Vector2 averageVector = GetAverageFromNearbyBoids(boid, false);
+      if (averageVector == Vector2.zero)
+         return;
+
+      float angle;
+      if (checkPosition)
       {
-         return BoidPhysics.GetAverageBoidVectorFromGrid(boid, checkPosition, neighbourRadius);
-         //return BoidPhysics.GetAverageBoidVector(boid, checkPosition, neighbourRadius);
+         var directionToMid = averageVector - boid.Position;
+         angle = Vector2.SignedAngle(boid.Heading, directionToMid);
       }
       else
       {
-         Vector2 averageVector = Vector2.zero;
-
-         var neighbours = Physics2D.OverlapCircleAll(boid.Position, neighbourRadius);
-         int neighbourCount = 0;
-      
-         var boidDictionary = BoidManager.Instance.colliderEntities;
-         foreach (var neighbour in neighbours)
-         {
-            if (neighbourCount >= 10)
-               break;
-            
-            BoidEntity neighbourBoid = boidDictionary[neighbour];
-            
-            if (neighbourBoid && neighbourBoid != boid)
-            {
-               if (checkPosition)
-               {
-                  averageVector += neighbourBoid.Position;
-               }
-               else
-               {
-                  averageVector += neighbourBoid.Heading;
-               }
-            
-               neighbourCount++;
-            }
-         }
-      
-         if (neighbourCount <= 0) 
-            return Vector2.zero;
-
-         return averageVector / neighbourCount;
+         angle = Vector2.SignedAngle(boid.Heading, averageVector);
       }
+
+      float step = maxRotSpeed * Time.deltaTime;
+      boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, angle) * boid.Rotation, step);
+   }
+
+   private Vector2 GetAverageFromNearbyBoids(BoidEntity boid, bool checkPosition)
+   {
+      return BoidPhysics.GetAverageBoidVectorFromGrid(boid, checkPosition);
    }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146a1d89ae621df4d812ecf786aeffe2, type: 3}
   m_Name: Alignment
   m_EditorClassIdentifier: 
-  weight: 0.5
+  weight: 1
   neighbourRadius: 2
-  maxRotationSpeed: 10
+  maxRotationSpeed: 30
   rotationDamping: 3
