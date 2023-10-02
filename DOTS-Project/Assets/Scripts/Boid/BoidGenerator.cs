@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class BoidGenerator : MonoBehaviour
 {
     [SerializeField] private BoidEntitySet boidEntitySet;
     [SerializeField] private int agentsToGenerateCount = 10;
+    
+    public UnityEvent OnAgentsGenerated;
 
     private void Start()
     {
@@ -24,6 +27,8 @@ public class BoidGenerator : MonoBehaviour
             boidEntity.transform.parent = transform;
             boidEntitySet.AddAgent(boidEntity);
         }
+
+        OnAgentsGenerated?.Invoke();
     }
 
     private Vector3 GetRandomPosition()

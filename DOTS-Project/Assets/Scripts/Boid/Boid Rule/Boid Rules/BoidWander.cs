@@ -11,9 +11,10 @@ public class BoidWander : BoidRule
     public override void UpdateBoid(BoidEntity boid)
     {
         var force = pushForce * boid.Heading;
-        boid.Rigidbody.AddForce(force);
+        boid.Rigidbody.AddForce(GetWeightedForce(force));
+        //boid.transform.position += boid.transform.right * Time.fixedDeltaTime;
 
         float turnAngle = Random.Range(-maxTurnAngle, maxTurnAngle);
-        boid.Rigidbody.AddTorque(turnAngle); 
+        boid.Rigidbody.AddTorque(GetWeightedTorque(turnAngle)); 
     }
 }

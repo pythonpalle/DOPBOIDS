@@ -12,25 +12,9 @@ public class BoidCohesion : BoidRule
 
     public override void UpdateBoid(BoidEntity boid)
     {
-        var neighbours = Physics2D.CircleCastAll(boid.Position, neighbourRadius, Vector2.up);
-
-        Vector2 averagePosition = Vector2.zero;
-        int neighbourCount = 0;
-        
-        foreach (var neighbour in neighbours)
-        {
-            BoidEntity neighbourBoid = neighbour.collider.GetComponent<BoidEntity>();
-            if (neighbourBoid && neighbourBoid != boid)
-            {
-                averagePosition += neighbourBoid.Heading;
-                neighbourCount++;
-            }
-        }
-
-        if (neighbourCount <= 0) 
+        var averagePosition = GetAverageFromNearbyBoids(boid, neighbourRadius, true);
+        if (averagePosition == Vector2.zero)
             return;
-
-        averagePosition /= neighbourCount;
 
         var directionToAverage = averagePosition - boid.Position;
         
@@ -48,7 +32,7 @@ public class BoidCohesion : BoidRule
         const float epsilon = 0.001f;
         if (Mathf.Abs(torque) > epsilon)
         {
-            boid.Rigidbody.AddTorque(torque);
+            boid.Rigidbody.AddTorque(GetWeightedTorque(torque));
         }
     }
 }
