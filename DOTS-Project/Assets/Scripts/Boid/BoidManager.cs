@@ -9,11 +9,11 @@ public class BoidManager : MonoBehaviour
     [SerializeField] private BoidEntitySet _boidEntitySet;
     
     [Header("Boid Rules")]
-    [SerializeField] private List<BoidRule> boidRules = new List<BoidRule>();
+    [SerializeField] private BoidRuleContainer ruleContainer;
 
     private void Update()
     {
-        foreach (var rule in boidRules)
+        foreach (var rule in ruleContainer.Rules)
         {
             foreach (var boid in _boidEntitySet.Boids)
             {

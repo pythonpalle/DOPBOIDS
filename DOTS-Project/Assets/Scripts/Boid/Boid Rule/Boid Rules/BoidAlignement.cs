@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Rules/Alignment")]
 public class BoidAlignement : BoidRule
 {
-    [SerializeField] private float neighbourRadius = 3f;
-    [SerializeField] private float rotationSpeed = 2f;
+    [SerializeField] private float neighbourRadius = 1f;
+    [SerializeField] private float rotationSpeed = 20f;
     
     
     public override void UpdateBoid(BoidEntity boid)
@@ -32,6 +33,6 @@ public class BoidAlignement : BoidRule
         float angle = Vector2.SignedAngle(boid.Heading, averageHeading);
         float rotationStep = rotationSpeed * Time.deltaTime;
         boid.transform.rotation = Quaternion.RotateTowards(boid.transform.rotation,
-            Quaternion.Euler(0, 0, angle) * transform.rotation, rotationStep);
+            Quaternion.Euler(0, 0, angle) * boid.transform.rotation, rotationStep);
     }
 }
