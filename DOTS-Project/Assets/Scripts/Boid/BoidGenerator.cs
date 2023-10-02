@@ -21,6 +21,7 @@ public class BoidGenerator : MonoBehaviour
         for (int i = 0; i < agentsToGenerateCount; i++)
         {
             BoidEntity boidEntity = Instantiate(boidEntitySet.BoidEntityPrefab, GetRandomPosition(), GetRandomRotation());
+            boidEntity.transform.parent = transform;
             boidEntitySet.AddAgent(boidEntity);
         }
     }

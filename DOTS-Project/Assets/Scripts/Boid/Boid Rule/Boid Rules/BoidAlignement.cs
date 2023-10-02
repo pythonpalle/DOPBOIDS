@@ -29,10 +29,13 @@ public class BoidAlignement : BoidRule
         if (neighbourCount <= 0)
             return;
 
+        var boidTransform = boid.transform;
+        var boidRotation = boidTransform.rotation;
+
         averageHeading.Normalize();
         float angle = Vector2.SignedAngle(boid.Heading, averageHeading);
         float rotationStep = rotationSpeed * Time.deltaTime;
-        boid.transform.rotation = Quaternion.RotateTowards(boid.transform.rotation,
-            Quaternion.Euler(0, 0, angle) * boid.transform.rotation, rotationStep);
+        boidTransform.rotation = Quaternion.RotateTowards(boidRotation,
+            Quaternion.Euler(0, 0, angle) * boidRotation, rotationStep);
     }
 }

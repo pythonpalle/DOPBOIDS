@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BoidEntity : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D _rigidbody;
+    public Rigidbody2D Rigidbody => _rigidbody;
+    
     public Vector2 Position => transform.position;
-    // public Quaternion Rotation => transform.rotation;
-    // public float ZOrientation => transform.rotation.eulerAngles.z;
 
     public Vector2 Heading => transform.up;
 }

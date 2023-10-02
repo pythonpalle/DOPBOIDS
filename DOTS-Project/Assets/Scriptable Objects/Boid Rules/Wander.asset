@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8447cf27b1f8b8449ef59e2356c1be9, type: 3}
-  m_Name: Rule Container
+  m_Script: {fileID: 11500000, guid: 8a1a077e8d7e2e645a6c32f0c3890c8a, type: 3}
+  m_Name: Wander
   m_EditorClassIdentifier: 
-  rules:
-  - {fileID: 11400000, guid: 16a2ba00cc11dc644b5a70a31ec949db, type: 2}
+  pushForce: 2
