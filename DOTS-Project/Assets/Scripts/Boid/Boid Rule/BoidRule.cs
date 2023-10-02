@@ -12,7 +12,7 @@ public abstract class BoidRule : ScriptableObject
       return inTorque * weight;
    }
    
-   protected Vector2 GetWeightedForce(Vector2 inForce)
+   protected float GetWeightedForce(float inForce)
    {
       return inForce * weight;
    }
@@ -33,6 +33,8 @@ public abstract class BoidRule : ScriptableObject
       {
          angle = Vector2.SignedAngle(boid.Heading, averageVector);
       }
+
+      angle = GetWeightedTorque(angle);
 
       float step = maxRotSpeed * Time.deltaTime;
       boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, angle) * boid.Rotation, step);
