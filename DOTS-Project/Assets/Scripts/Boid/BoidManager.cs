@@ -17,12 +17,10 @@ public class BoidManager : MonoBehaviour
         {
             if (!ruleConfiguration.active)
                 continue;
-
-            int ruleCount = ruleContainer.ActiveRuleCount;
             
             foreach (var boid in _boidEntitySet.Boids)
             {
-                ruleConfiguration.rule.UpdateBoid(boid, ruleCount);
+                ruleConfiguration.rule.UpdateBoid(boid);
             }
         }
     }

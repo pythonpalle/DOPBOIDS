@@ -8,10 +8,9 @@ public class BoidAlignement : BoidRule
     [SerializeField] private float neighbourRadius = 1f;
     [SerializeField] private float maxRotationSpeed = 10f;
     [SerializeField] private float rotationDamping = 1;
-    [SerializeField] private float pushForce = 0.2f;
     
     
-    public override void UpdateBoid(BoidEntity boid, int ruleCount)
+    public override void UpdateBoid(BoidEntity boid)
     {
         var neighbours = Physics2D.CircleCastAll(boid.Position, neighbourRadius, Vector2.up);
 
@@ -46,9 +45,7 @@ public class BoidAlignement : BoidRule
         const float epsilon = 0.001f;
         if (Mathf.Abs(torque) > epsilon)
         {
-            boid.Rigidbody.AddTorque(torque / ruleCount);
+            boid.Rigidbody.AddTorque(torque);
         }
-        
-        boid.Rigidbody.AddForce(pushForce * boid.Heading / ruleCount);
     }
 }

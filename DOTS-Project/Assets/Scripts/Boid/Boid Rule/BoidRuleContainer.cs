@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Boid Rule Container")]
 public class BoidRuleContainer : ScriptableObject
 {
-    public int ActiveRuleCount => ruleConfigurations.Count(con => con.active);
+    //public int ActiveRuleCount => ruleConfigurations.Count(con => con.active);
     [SerializeField] private List<BoidRuleConfiguration> ruleConfigurations;
     public List<BoidRuleConfiguration> RuleConfigurations => ruleConfigurations;
 }

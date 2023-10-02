@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class BoidRule : ScriptableObject
 {
    
-   public abstract void UpdateBoid(BoidEntity boid, int ruleCount);
+   public abstract void UpdateBoid(BoidEntity boid);
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1a077e8d7e2e645a6c32f0c3890c8a, type: 3}
   m_Name: Wander
   m_EditorClassIdentifier: 
-  pushForce: 0.2
+  pushForce: 0.5
   maxTurnAngle: 0.1

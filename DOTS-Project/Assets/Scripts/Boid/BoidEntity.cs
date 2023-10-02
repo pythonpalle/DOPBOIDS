@@ -7,5 +7,5 @@ public class BoidEntity : MonoBehaviour
     
     public Vector2 Position => transform.position;
 
-    public Vector2 Heading => transform.up;
+    public Vector2 Heading => transform.right;
 }

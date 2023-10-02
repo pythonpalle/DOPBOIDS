@@ -9,9 +9,8 @@ public class BoidCohesion : BoidRule
     
     [SerializeField] private float maxRotationSpeed = 10f;
     [SerializeField] private float rotationDamping = 1;
-    [SerializeField] private float pushForce = 1;
 
-    public override void UpdateBoid(BoidEntity boid, int ruleCount)
+    public override void UpdateBoid(BoidEntity boid)
     {
         var neighbours = Physics2D.CircleCastAll(boid.Position, neighbourRadius, Vector2.up);
 
@@ -49,10 +48,7 @@ public class BoidCohesion : BoidRule
         const float epsilon = 0.001f;
         if (Mathf.Abs(torque) > epsilon)
         {
-            boid.Rigidbody.AddTorque(torque / ruleCount);
+            boid.Rigidbody.AddTorque(torque);
         }
-        
-
-        boid.Rigidbody.AddForce(boid.Heading * pushForce / ruleCount);
     }
 }
