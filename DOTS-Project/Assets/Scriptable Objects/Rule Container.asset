@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Rule Container
   m_EditorClassIdentifier: 
   ruleConfigurations:
-  - rule: {fileID: 11400000, guid: 7e805ff22115f06438f611b6a52c1e56, type: 2}
-    active: 0
   - rule: {fileID: 11400000, guid: 16a2ba00cc11dc644b5a70a31ec949db, type: 2}
-    active: 0
+    active: 1
+  - rule: {fileID: 11400000, guid: 7e805ff22115f06438f611b6a52c1e56, type: 2}
+    active: 1
   - rule: {fileID: 11400000, guid: 0b6108113840de240b9a9152ad3a65c7, type: 2}
     active: 1
