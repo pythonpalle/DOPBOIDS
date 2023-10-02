@@ -11,7 +11,7 @@ public class BoidWander : BoidRule
     public override void UpdateBoid(BoidEntity boid)
     {
         boid.transform.position += (Vector3)boid.Heading * pushForce * Time.deltaTime;
-
+        
         float turnAngle = Random.Range(-maxTurnAngle, maxTurnAngle);
         boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, turnAngle) * boid.Rotation, 
             maxTurnAngle*Time.deltaTime);
