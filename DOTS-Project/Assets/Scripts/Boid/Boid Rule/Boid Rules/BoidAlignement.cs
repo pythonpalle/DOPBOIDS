@@ -6,7 +6,8 @@ using UnityEngine;
 public class BoidAlignement : BoidRule
 {
     [SerializeField] private float neighbourRadius = 1f;
-    [SerializeField] private float rotationSpeed = 20f;
+    [SerializeField] private float maxRotationSpeed = 10f;
+    [SerializeField] private float rotationDamping = 1;
     
     
     public override void UpdateBoid(BoidEntity boid)
@@ -26,16 +27,25 @@ public class BoidAlignement : BoidRule
             }
         }
 
-        if (neighbourCount <= 0)
+        if (neighbourCount <= 0) 
             return;
-
-        var boidTransform = boid.transform;
-        var boidRotation = boidTransform.rotation;
-
+        
         averageHeading.Normalize();
         float angle = Vector2.SignedAngle(boid.Heading, averageHeading);
-        float rotationStep = rotationSpeed * Time.deltaTime;
-        boidTransform.rotation = Quaternion.RotateTowards(boidRotation,
-            Quaternion.Euler(0, 0, angle) * boidRotation, rotationStep);
+
+        float desiredVelocity = angle * maxRotationSpeed;
+        Rigidbody2D rb = boid.Rigidbody;
+        
+        float torque = rb.inertia * Mathf.Clamp(desiredVelocity - rb.angularVelocity, -maxRotationSpeed, maxRotationSpeed);
+        
+        float dampModifier = rb.angularVelocity > 1 ? rb.angularVelocity : 1;
+        
+        torque /= (rotationDamping * dampModifier);
+
+        const float epsilon = 0.001f;
+        if (Mathf.Abs(torque) > epsilon)
+        {
+            boid.Rigidbody.AddTorque(torque);
+        }
     }
 }

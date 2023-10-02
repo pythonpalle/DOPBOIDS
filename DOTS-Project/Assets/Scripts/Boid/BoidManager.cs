@@ -11,7 +11,7 @@ public class BoidManager : MonoBehaviour
     [Header("Boid Rules")]
     [SerializeField] private BoidRuleContainer ruleContainer;
 
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (var rule in ruleContainer.Rules)
         {

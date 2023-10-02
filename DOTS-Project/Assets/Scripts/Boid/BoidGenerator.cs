@@ -30,7 +30,7 @@ public class BoidGenerator : MonoBehaviour
     {
         return new Vector3
         {
-            x = 0, //ScreenManager.Instance.BottomLeft.x - 1,
+            x = Random.Range(-ScreenManager.Instance.BottomLeft.x , ScreenManager.Instance.BottomLeft.x),
             y = ScreenManager.Instance.BottomLeft.y + Random.Range(0, ScreenManager.Instance.Height),
             z = 0
         };
