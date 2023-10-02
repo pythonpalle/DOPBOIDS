@@ -8,6 +8,7 @@ public class BoidAlignement : BoidRule
     [SerializeField] private float neighbourRadius = 1f;
     [SerializeField] private float maxRotationSpeed = 10f;
     [SerializeField] private float rotationDamping = 1;
+    [SerializeField] private float pushForce = 0.2f;
     
     
     public override void UpdateBoid(BoidEntity boid)
@@ -47,5 +48,7 @@ public class BoidAlignement : BoidRule
         {
             boid.Rigidbody.AddTorque(torque);
         }
+        
+        boid.Rigidbody.AddForce(pushForce * boid.Heading);
     }
 }
