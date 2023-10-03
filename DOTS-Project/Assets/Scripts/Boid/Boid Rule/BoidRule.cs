@@ -19,7 +19,7 @@ public abstract class BoidRule : ScriptableObject
    
    protected void UpdateBoidRotationFromAverageVector(BoidEntity boid, float maxRotSpeed, bool checkPosition)
    {
-      Vector2 averageVector = GetAverageFromNearbyBoids(boid, false);
+      Vector2 averageVector = GetAverageVectorFromNearbyBoids(boid, false);
       if (averageVector == Vector2.zero)
          return;
 
@@ -40,8 +40,8 @@ public abstract class BoidRule : ScriptableObject
       boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, angle) * boid.Rotation, step);
    }
 
-   private Vector2 GetAverageFromNearbyBoids(BoidEntity boid, bool checkPosition)
+   private Vector2 GetAverageVectorFromNearbyBoids(BoidEntity boid, bool checkPosition)
    {
-      return BoidPhysics.GetAverageBoidVectorFromGrid(boid, checkPosition);
+      return BoidPhysics.GetAverageBoidVectorFromGrid(boid.Position, checkPosition);
    }
 }

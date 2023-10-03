@@ -21,3 +21,5 @@ MonoBehaviour:
     active: 1
   - rule: {fileID: 11400000, guid: 98dc692717c9b444a8e9ac1c638fe2a0, type: 2}
     active: 1
+  - rule: {fileID: 11400000, guid: d8c533d7b4b81604fb352651ee13997d, type: 2}
+    active: 1

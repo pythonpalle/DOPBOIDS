@@ -33,7 +33,7 @@ public class GridManager : MonoBehaviour
 
     public void SetupGrid()
     {
-        grid = new Dictionary<Vector2Int, List<BoidEntity>>();
+        grid.Clear();
 
         foreach (var boid in _entitySet.Boids)
         {
@@ -54,7 +54,7 @@ public class GridManager : MonoBehaviour
         return new Vector2Int(x, y);
     }
 
-    public List<BoidEntity> GetNearbyBoids(Vector3 position)
+    public List<BoidEntity> GetNearbyBoids3x3(Vector3 position)
     {
         Vector2Int cell = WorldToGrid(position);
         List<BoidEntity> nearbyBoids = new List<BoidEntity>();
@@ -72,5 +72,42 @@ public class GridManager : MonoBehaviour
         }
 
         return nearbyBoids;
+    }
+
+    public Vector2 GetAverageVector(Vector3 position, bool usePosition, int offset = 1)
+    {
+        Vector2Int cell = WorldToGrid(position);
+        Vector2 average = Vector2.zero;
+
+        int count = 0;
+        
+        for (int xOffset = -offset; xOffset <= offset; xOffset++)
+        {
+            for (int yOffset = -offset; yOffset <= offset; yOffset++)
+            {
+                Vector2Int neighborCell = cell + new Vector2Int(xOffset, yOffset);
+                if (grid.ContainsKey(neighborCell))
+                {
+                    foreach (var boid in grid[neighborCell])
+                    {
+                        if (usePosition)
+                        {
+                            average += boid.Position;
+                        }
+                        else
+                        {
+                            average += boid.Heading;
+                        }
+
+                        count++;
+                    }
+                }
+            }
+        }
+
+        if (count == 0)
+            return Vector2.zero;
+        else
+            return average / count;
     }
 }

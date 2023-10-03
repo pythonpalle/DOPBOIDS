@@ -7,7 +7,7 @@ public static class BoidPhysics
     
     public static Vector2 GetAverageBoidVectorFromGrid(BoidEntity boid, bool comparePosition)
     {
-        var nearbyBoids = GridManager.Instance.GetNearbyBoids(boid.Position);
+        var nearbyBoids = GridManager.Instance.GetNearbyBoids3x3(boid.Position);
 
         if (nearbyBoids.Count == 0)
             return Vector2.zero; 
@@ -26,6 +26,11 @@ public static class BoidPhysics
         }
 
         return averageVector / nearbyBoids.Count;
+    }
+
+    public static Vector2 GetAverageBoidVectorFromGrid(Vector2 boidPos, bool comparePosition)
+    {
+        return GridManager.Instance.GetAverageVector(boidPos, comparePosition, 2);
     }
 
     public static float SquareDistance(Vector2 a, Vector2 b)

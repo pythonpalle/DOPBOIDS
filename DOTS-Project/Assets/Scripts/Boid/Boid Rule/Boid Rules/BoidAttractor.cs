@@ -21,9 +21,6 @@ public class BoidAttractor : BoidRule
         {
             var boidToMid = (ScreenManager.Instance.Mid - boidPos).normalized;
             
-            Debug.Log($"Mid: {ScreenManager.Instance.Mid}");
-            Debug.Log($"to mid: {boidToMid}");
-
             float angle = Vector2.SignedAngle(boid.Heading, boidToMid);
             boid.Rotation = Quaternion.RotateTowards(boid.Rotation, Quaternion.Euler(0, 0, angle) * boid.Rotation, 
                 maxTurnAngle*Time.deltaTime);

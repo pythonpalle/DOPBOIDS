@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Alignment
   m_EditorClassIdentifier: 
   weight: 1
-  neighbourRadius: 2
   maxRotationSpeed: 30
-  rotationDamping: 3
